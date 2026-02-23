@@ -421,84 +421,50 @@ nav {
 }
 
 .r-num {
-  position: absolute; top: 1rem; right: 1.2rem;
-  font-family: 'Bebas Neue', sans-serif; font-size: 4rem;
-  color: rgba(0,0,0,0.05); line-height: 1;
-  transition: color 0.3s;
-}
-.roster-card:hover .r-num,
-.roster-card.featured .r-num { color: rgba(255,255,255,0.04); }
-
-.r-pos {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.65rem; letter-spacing: 0.2em;
-  color: var(--green); transition: color 0.3s;
+  font-size: 1rem; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.18); line-height: 1;
+  flex-shrink: 0;
 }
-.roster-card:hover .r-pos,
-.roster-card.featured .r-pos { color: var(--teal); }
+.roster-card.featured .r-num { color: rgba(78,205,196,0.5); }
+
+.r-pos { display: none; }
 
 .r-name {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem; letter-spacing: 0.06em;
-  color: #111; line-height: 1.1; transition: color 0.3s;
+  font-size: 1.4rem; letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.85); line-height: 1;
+  transition: color 0.3s;
+  white-space: nowrap;
 }
-.roster-card:hover .r-name,
-.roster-card.featured .r-name { color: var(--white); }
 
 .r-sub {
-  font-size: 0.8rem; color: #666;
-  line-height: 1.6; font-weight: 300; flex: 1;
-  transition: color 0.3s;
+  font-size: 0.88rem; color: rgba(255,255,255,0.4);
+  line-height: 1.65; font-weight: 300;
 }
-.roster-card:hover .r-sub,
-.roster-card.featured .r-sub { color: rgba(255,255,255,0.4); }
 
 .r-price {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 2.4rem; color: #111;
-  transition: color 0.3s; margin-top: 0.5rem;
+  font-size: 1.3rem; color: rgba(255,255,255,0.5);
+  white-space: nowrap; flex-shrink: 0;
 }
 .r-price .period {
-  font-family: 'Outfit', sans-serif; font-size: 0.78rem;
-  font-weight: 300; color: #999; margin-left: 0.1rem;
-  transition: color 0.3s;
+  font-family: 'Outfit', sans-serif; font-size: 0.72rem;
+  font-weight: 300; color: rgba(255,255,255,0.25);
 }
-.roster-card:hover .r-price,
-.roster-card.featured .r-price { color: var(--white); }
-.roster-card:hover .r-price .period,
-.roster-card.featured .r-price .period { color: rgba(255,255,255,0.3); }
+.roster-card.featured .r-price { color: var(--teal); }
 
-.roster-card--new {
-  border-top-color: var(--teal) !important;
-  background: #0a0a0a;
-}
-.roster-card--new .r-num { color: rgba(78,205,196,0.06); }
-.roster-card--new .r-name { color: var(--white); }
-.roster-card--new .r-sub  { color: rgba(255,255,255,0.38); }
 .roster-card--new .r-price { color: var(--teal); }
-.roster-card--new .r-cta  { color: var(--teal); border-color: rgba(78,205,196,0.25); }
-.roster-card--new:hover   { background: #161616 !important; }
 
 .r-cta {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.82rem; letter-spacing: 0.12em;
-  color: #aaa; border-bottom: 1px solid rgba(0,0,0,0.1);
-  padding-bottom: 0.2rem; width: fit-content;
-  transition: all 0.3s; cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8rem; font-weight: 400;
+  color: var(--teal);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: inline-block;
 }
-.roster-card:hover .r-cta,
-.roster-card.featured .roster-card--new {
-  border-top-color: var(--teal) !important;
-  background: #0a0a0a;
-}
-.roster-card--new .r-num { color: rgba(78,205,196,0.06); }
-.roster-card--new .r-name { color: var(--white); }
-.roster-card--new .r-sub  { color: rgba(255,255,255,0.38); }
 .roster-card--new .r-price { color: var(--teal); }
-.roster-card--new .r-cta  { color: var(--teal); border-color: rgba(78,205,196,0.25); }
-.roster-card--new:hover   { background: #161616 !important; }
-
-.r-cta { color: var(--teal); border-color: rgba(78,205,196,0.3); }
 
 /* ══════════════════════════
    GUIDE — Lovable's two-column split
@@ -998,53 +964,64 @@ footer {
 
 <!-- ══ ROSTER ══ -->
 <section class="roster reveal" id="roster">
-  <p class="section-eyebrow">Where You Start</p>
+  <p class="section-eyebrow" style="color:var(--teal);">Programs</p>
   <h2 class="roster-headline">Find Your <span>Level.</span></h2>
-  <p class="roster-sub">Every program is built for someone who's AI-curious, not AI-fluent. You pick where you begin.</p>
+  <p class="roster-sub">Built for AI-curious, not AI-fluent. Pick where you begin.</p>
 
   <div class="roster-grid">
 
-    <div class="roster-card">
-      <div class="r-num">00</div>
-      <div class="r-level-bar">
-        <div class="level-dot active"></div>
-        <div class="level-dot"></div>
-        <div class="level-dot"></div>
+    <div class="roster-card" onclick="toggleRoster(this)">
+      <div class="roster-row-top">
+        <div class="roster-row-left">
+          <span class="r-num">00</span>
+          <span class="r-name">AI Curious Kit</span>
+        </div>
+        <span class="r-price">Free</span>
+        <span class="roster-chevron">▾</span>
       </div>
-      <p class="r-level-label">Starting from zero</p>
-      <p class="r-name">AI Curious Kit</p>
-      <p class="r-sub">5 tools. Plain English. No setup. You'll have your first AI win before lunch on Monday — guaranteed.</p>
-      <p class="r-price">$0</p>
-      <p class="r-cta" onclick="document.getElementById('guide').scrollIntoView({behavior:'smooth'})">Get it free →</p>
+      <div class="roster-body">
+        <div class="roster-body-inner">
+          <p class="r-level-label">Starting from zero</p>
+          <p class="r-sub">5 tools. Plain English. No setup. You'll have your first AI win before lunch on Monday — guaranteed.</p>
+          <p class="r-cta" onclick="event.stopPropagation();document.getElementById('guide').scrollIntoView({behavior:'smooth'})">Get it free →</p>
+        </div>
+      </div>
     </div>
 
-    <div class="roster-card featured">
-      <div class="r-num">01</div>
-      <div class="r-level-bar">
-        <div class="level-dot active"></div>
-        <div class="level-dot active"></div>
-        <div class="level-dot"></div>
+    <div class="roster-card featured open" onclick="toggleRoster(this)">
+      <div class="roster-row-top">
+        <div class="roster-row-left">
+          <span class="r-num">01</span>
+          <span class="r-name">Inner Circle <span class="r-best-badge">Best</span></span>
+        </div>
+        <span class="r-price">$499<span class="period">/mo</span></span>
+        <span class="roster-chevron">▾</span>
       </div>
-      <p class="r-level-label">Best for beginners ready to go deeper</p>
-      <div class="r-best-badge">Best Content to Learn</div>
-      <p class="r-name">Inner Circle</p>
-      <p class="r-sub">Monthly live coaching sessions. Your own AI agent (Remi) that works for you. A private community of peers at your level — nobody younger, nobody judging. Progress at your pace, not theirs.</p>
-      <p class="r-price">$499<span class="period">/mo</span></p>
-      <p class="r-cta" onclick="document.getElementById('guide').scrollIntoView({behavior:'smooth'})">Join the waitlist →</p>
+      <div class="roster-body">
+        <div class="roster-body-inner">
+          <p class="r-level-label">Best for beginners ready to go deeper</p>
+          <p class="r-sub">Monthly live coaching. Your own AI agent (Remi). A private community of peers — nobody younger, nobody judging. Your pace, not theirs.</p>
+          <p class="r-cta" onclick="event.stopPropagation();document.getElementById('guide').scrollIntoView({behavior:'smooth'})">Join the waitlist →</p>
+        </div>
+      </div>
     </div>
 
-    <div class="roster-card">
-      <div class="r-num">02</div>
-      <div class="r-level-bar">
-        <div class="level-dot active"></div>
-        <div class="level-dot active"></div>
-        <div class="level-dot active"></div>
+    <div class="roster-card" onclick="toggleRoster(this)">
+      <div class="roster-row-top">
+        <div class="roster-row-left">
+          <span class="r-num">02</span>
+          <span class="r-name">1-on-1 Coaching</span>
+        </div>
+        <span class="r-price">$1,500<span class="period">/mo</span></span>
+        <span class="roster-chevron">▾</span>
       </div>
-      <p class="r-level-label">Ready to move fast, privately</p>
-      <p class="r-name">1-on-1 Coaching</p>
-      <p class="r-sub">Private sessions built around your role, your team, your goals. We build your AI roadmap together. 10 spots only.</p>
-      <p class="r-price">$1,500<span class="period">/mo</span></p>
-      <p class="r-cta" onclick="document.getElementById('guide').scrollIntoView({behavior:'smooth'})">Apply →</p>
+      <div class="roster-body">
+        <div class="roster-body-inner">
+          <p class="r-level-label">Ready to move fast, privately</p>
+          <p class="r-sub">Private sessions built around your role, your team, your goals. We build your AI roadmap together. 10 spots only.</p>
+          <p class="r-cta" onclick="event.stopPropagation();document.getElementById('guide').scrollIntoView({behavior:'smooth'})">Apply →</p>
+        </div>
+      </div>
     </div>
 
     <div class="roster-card">
@@ -1061,7 +1038,7 @@ footer {
       <p class="r-cta" onclick="document.getElementById('guide').scrollIntoView({behavior:'smooth'})">Book a call →</p>
     </div>
 
-    <div class="roster-card roster-card--new">
+    <div class="roster-card roster-card--new" onclick="toggleRoster(this)">
       <div class="r-num">04</div>
       <div class="r-level-bar">
         <div class="level-dot active"></div>

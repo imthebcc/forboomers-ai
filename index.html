@@ -38,9 +38,9 @@ body {
 ══════════════════════════ */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 60px;
+  height: 64px;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 0 3rem;
+  padding: 0 3.5rem;
   background: rgba(10,10,10,0.75);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -142,7 +142,7 @@ nav {
 .hero-content {
   position: absolute; z-index: 3;
   bottom: 0; left: 0; right: 0;
-  padding: 0 3.5rem 4.5rem;
+  padding: 0 3.5rem 5.5rem;
 }
 
 .hero-headline-wrap {
@@ -239,11 +239,8 @@ nav {
 
 .innings::after {
   content: '';
-  position: absolute; bottom: 0; left: 0; right: 0; height: 6px;
-  background: repeating-linear-gradient(90deg,
-    rgba(78,205,196,0.15) 0, rgba(78,205,196,0.15) 30px,
-    transparent 30px, transparent 34px);
-  opacity: 0.6;
+  position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+  background: rgba(255,255,255,0.05);
 }
 
 .section-eyebrow {
@@ -604,27 +601,134 @@ footer {
 }
 
 /* ══════════════════════════
-   RESPONSIVE
+   RESPONSIVE — Mobile-first, Jack Dorsey clean
 ══════════════════════════ */
-@media (max-width: 860px) {
-  nav { padding: 0 1.5rem; }
-  .nav-links { display: none; }
-  .hero { padding: 0 1.5rem 3rem; }
-  .hero-content { grid-template-columns: 1fr; gap: 2rem; }
-  .hero-right-col { align-items: flex-start; }
-  .innings, .roster, .guide, .statement { padding-left: 1.5rem; padding-right: 1.5rem; }
-  .innings-row { flex-direction: column; }
-  .inning-card { flex: none; min-height: 110px; }
-  .inning-card:hover { flex: none; }
-  .inning-desc { max-height: 80px; margin-top: 0.5rem; }
+
+/* ── Tablet ── */
+@media (max-width: 960px) {
+  .hero-stats { display: none; }
+  .hero-bottom-row {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hero-sub { max-width: 100%; }
   .roster-grid { grid-template-columns: 1fr 1fr; }
-  .guide-inner { grid-template-columns: 1fr; gap: 3rem; }
-  footer { flex-direction: column; gap: 1rem; text-align: center; }
+  .forfor-inner { grid-template-columns: 1fr; gap: 0; }
+  .forfor-divider { display: none; }
+  .forfor-col:first-child { border-bottom: 1px solid rgba(255,255,255,0.07); padding-bottom: 3rem; margin-bottom: 3rem; }
 }
-@media (max-width: 520px) {
-  .roster-grid { grid-template-columns: 1fr; }
-  .hero-ctas { flex-direction: column; align-items: flex-start; }
-  .hero-input { width: 100%; }
+
+/* ── Mobile ── */
+@media (max-width: 680px) {
+  /* NAV */
+  nav { padding: 0 1.4rem; height: 54px; }
+  .nav-links { display: none; }
+  .nav-cta { font-size: 0.75rem; padding: 0.4rem 1rem; letter-spacing: 0.08em; }
+
+  /* HERO — full rethink */
+  .hero { min-height: 100svh; }
+
+  .hero-badge { top: 70px; left: 1.4rem; }
+  .hero-badge-text { font-size: 0.58rem; letter-spacing: 0.16em; }
+
+  .hero-stats { display: none; }
+
+  .hero-content { padding: 0 1.4rem 3.5rem; }
+
+  .hero-headline-wrap { margin-bottom: 2rem; }
+
+  .hero-headline {
+    font-size: clamp(3.8rem, 16vw, 6rem);
+    line-height: 0.88;
+  }
+
+  .hero-bottom-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Fix word-wrap on sub copy */
+  .hero-sub {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+    max-width: 100%;
+    padding-left: 1rem;
+  }
+  .hero-sub br { display: none; }
+
+  /* Email form stacks */
+  .hero-actions { gap: 0.75rem; }
+  .hero-email-row { flex-direction: column; gap: 0.5rem; }
+  .hero-input {
+    width: 100%;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    border-bottom: none;
+  }
+  .hero-input:focus { border-color: var(--teal); }
+  .btn-primary { width: 100%; padding: 1rem; font-size: 1.05rem; }
+
+  .hero-links-row { flex-wrap: wrap; gap: 0.5rem; }
+  .hero-note { font-size: 0.62rem; }
+
+  /* SECTIONS */
+  .innings, .roster, .guide, .statement, .forfor {
+    padding-left: 1.4rem;
+    padding-right: 1.4rem;
+  }
+  .innings { padding-top: 70px; padding-bottom: 70px; }
+
+  /* INNINGS CARDS — horizontal scroll on mobile */
+  .innings-row {
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 2px;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+  }
+  .innings-row::-webkit-scrollbar { display: none; }
+  .inning-card {
+    flex: 0 0 72vw;
+    min-height: 220px;
+  }
+  .inning-card:hover { flex: 0 0 72vw; }
+  .inning-desc { max-height: none; opacity: 1; margin-top: 0.5rem; font-size: 0.78rem; }
+
+  /* STATEMENT */
+  .statement { padding-top: 80px; padding-bottom: 80px; }
+  .statement-quote { font-size: clamp(1.6rem, 6vw, 2.4rem); }
+  .stitch-col { display: none; }
+
+  /* ROSTER */
+  .roster { padding-top: 80px; padding-bottom: 80px; }
+  .roster-grid {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .roster-card { padding: 1.8rem 1.4rem; }
+  .r-num { font-size: 4rem; }
+
+  /* FOR / NOT FOR */
+  .forfor { padding-top: 70px; padding-bottom: 70px; }
+  .forfor-list li { font-size: 0.85rem; }
+
+  /* GUIDE */
+  .guide { padding-top: 80px; padding-bottom: 80px; }
+  .guide-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .guide-headline { font-size: clamp(2.5rem, 9vw, 4rem); }
+
+  /* FOOTER */
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.4rem; }
+}
+
+/* ── Small phones ── */
+@media (max-width: 390px) {
+  .hero-headline { font-size: 3.4rem; }
+  .inning-card { flex: 0 0 82vw; }
 }
 
 /* ══════════════════════════
@@ -768,9 +872,7 @@ footer {
 
     <div class="hero-bottom-row">
       <p class="hero-sub">
-        You've heard the AI talk. Maybe tried it once.<br>
-        Something clicked — or didn't. Either way, you're here.<br>
-        <em style="color:rgba(255,255,255,0.65); font-style:normal;">This is where it starts to make sense.</em>
+        You've heard the AI talk. Maybe tried it once. Something clicked — or didn't. Either way, you're here. This is where it starts to make sense.
       </p>
       <div class="hero-actions">
         <div class="hero-email-row">
@@ -830,17 +932,6 @@ footer {
 
 <!-- ══ STATEMENT ══ -->
 <section class="statement reveal" id="statement">
-  <div class="stitch-col left">
-    <div class="stitch-dot"></div><div class="stitch-dot"></div>
-    <div class="stitch-dot"></div><div class="stitch-dot"></div>
-    <div class="stitch-dot"></div>
-  </div>
-  <div class="stitch-col right">
-    <div class="stitch-dot"></div><div class="stitch-dot"></div>
-    <div class="stitch-dot"></div><div class="stitch-dot"></div>
-    <div class="stitch-dot"></div>
-  </div>
-
   <p class="section-eyebrow">The Truth</p>
   <p class="statement-quote" id="stmt">
     <span class="word">"AI</span>&nbsp;<span class="word">isn't</span>&nbsp;<span class="word">replacing</span>&nbsp;<span class="word">executives.</span>&nbsp;<span class="word">It's</span>&nbsp;<span class="word teal-word">replacing</span>&nbsp;<span class="word teal-word">executives</span>&nbsp;<span class="word teal-word">who</span>&nbsp;<span class="word teal-word">refuse</span>&nbsp;<span class="word teal-word">to</span>&nbsp;<span class="word teal-word">evolve."</span>

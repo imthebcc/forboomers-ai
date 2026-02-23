@@ -236,8 +236,12 @@ nav {
 ══════════════════════════ */
 .innings {
   background: #111111;
-  padding: 110px 3.5rem 100px;
+  padding: 80px 1.5rem;
   position: relative; overflow: hidden;
+  width: 100%; box-sizing: border-box;
+}
+@media (min-width: 760px) {
+  .innings { padding: 110px 3.5rem 100px; }
 }
 
 .innings::after {
@@ -247,9 +251,11 @@ nav {
 }
 
 .section-eyebrow {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 0.75rem; letter-spacing: 0.28em;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.68rem; letter-spacing: 0.18em;
+  font-weight: 500;
   text-transform: uppercase; margin-bottom: 1rem;
+  white-space: nowrap;
 }
 
 .innings .section-eyebrow { color: rgba(255,255,255,0.45); }
@@ -610,13 +616,8 @@ footer {
   .hero-stats { display: none; }
   .hero-bottom-row { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-sub { max-width: 100%; }
-  .roster-grid { grid-template-columns: 1fr 1fr; }
-  .forfor-inner { grid-template-columns: 1fr; gap: 0; }
-  .forfor-divider { display: none; }
-  .forfor-col:first-child {
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    padding-bottom: 3rem; margin-bottom: 3rem;
-  }
+
+
 }
 
 @media (max-width: 680px) {
@@ -682,7 +683,6 @@ footer {
   }
 
   /* ── INNINGS ── */
-  .innings { padding-top: 72px !important; padding-bottom: 72px !important; }
   .innings-headline { font-size: clamp(2.2rem, 9vw, 3.5rem); }
   .innings-row {
     display: flex; flex-direction: row;
@@ -697,7 +697,6 @@ footer {
   .inning-desc { max-height: none; opacity: 1; margin-top: 0.5rem; font-size: 0.8rem; }
 
   /* ── STATEMENT ── */
-  .statement { padding-top: 90px !important; padding-bottom: 90px !important; }
   .statement-quote {
     font-size: clamp(1.4rem, 5.5vw, 2rem);
     text-align: left;
@@ -707,18 +706,13 @@ footer {
   .stitch-col { display: none; }
 
   /* ── FOR / NOT FOR ── */
-  .forfor { padding-top: 72px !important; padding-bottom: 72px !important; }
   .forfor-list li { font-size: 0.85rem; }
 
   /* ── ROSTER ── */
-  .roster { padding-top: 80px !important; padding-bottom: 80px !important; }
-  .roster-grid { grid-template-columns: 1fr; gap: 2px; }
   .roster-card { padding: 1.8rem 1.5rem; }
   .r-num { font-size: 4rem; }
 
   /* ── GUIDE ── */
-  .guide { padding-top: 80px !important; padding-bottom: 80px !important; }
-  .guide-inner { grid-template-columns: 1fr !important; gap: 2.5rem; }
   .guide-headline { font-size: clamp(2.2rem, 9vw, 4rem); }
   .guide-card { padding: 2rem 1.5rem; }
 
@@ -735,44 +729,81 @@ footer {
 }
 
 /* ══════════════════════════
-   FOR / NOT FOR SECTION
+   FOR / NOT FOR — mobile-first
 ══════════════════════════ */
 .forfor {
   background: #0e0e0e;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 90px 3.5rem;
+  padding: 80px 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 760px) {
+  .forfor { padding: 90px 3.5rem; }
 }
 
 .forfor-inner {
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr;
-  gap: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   max-width: 900px;
 }
 
+@media (min-width: 760px) {
+  .forfor-inner {
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 4rem;
+  }
+}
+
 .forfor-divider {
+  display: none;
   background: rgba(255,255,255,0.07);
   width: 1px;
 }
 
-.forfor-col { display: flex; flex-direction: column; gap: 2rem; }
+@media (min-width: 760px) {
+  .forfor-divider { display: block; }
+}
+
+.forfor-col {
+  display: flex; flex-direction: column; gap: 2rem;
+  width: 100%;
+}
+
+.forfor-col:first-child {
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 760px) {
+  .forfor-col:first-child {
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
 
 .forfor-list {
   list-style: none;
-  display: flex; flex-direction: column; gap: 1rem;
+  display: flex; flex-direction: column; gap: 1.1rem;
 }
 
 .forfor-list li {
   display: flex; align-items: flex-start; gap: 0.9rem;
   font-size: 0.9rem; font-weight: 300;
-  color: rgba(255,255,255,0.65); line-height: 1.5;
+  color: rgba(255,255,255,0.65); line-height: 1.55;
+  max-width: 100%;
 }
 
 .forfor-icon {
   color: var(--teal);
   font-size: 0.75rem; flex-shrink: 0;
-  margin-top: 0.18rem;
+  margin-top: 0.22rem;
   font-family: monospace;
 }
 .forfor-icon.no { color: rgba(255,255,255,0.2); }
@@ -943,7 +974,7 @@ footer {
 <section class="forfor reveal" id="forfor">
   <div class="forfor-inner">
     <div class="forfor-col forfor-yes">
-      <p class="section-eyebrow" style="color:var(--teal);">This is for you if</p>
+      <p class="section-eyebrow" style="color:var(--teal);">For you</p>
       <ul class="forfor-list">
         <li><span class="forfor-icon">◎</span>You've heard "use AI" but nobody showed you how</li>
         <li><span class="forfor-icon">◎</span>You're successful and smart — just new to this</li>
@@ -954,7 +985,7 @@ footer {
     </div>
     <div class="forfor-divider"></div>
     <div class="forfor-col forfor-no">
-      <p class="section-eyebrow" style="color:rgba(255,255,255,0.25);">This is not for you if</p>
+      <p class="section-eyebrow" style="color:rgba(255,255,255,0.25);">Not for you</p>
       <ul class="forfor-list">
         <li><span class="forfor-icon no">✕</span>You're already building AI workflows or writing prompts daily</li>
         <li><span class="forfor-icon no">✕</span>You want a technical deep-dive into models and APIs</li>
